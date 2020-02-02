@@ -55,8 +55,8 @@ public class TranslateToPython extends StructFileGrammarBaseVisitor {
             {"lis", "lis", StructFileGrammarLexer.TK_LIST},
             {"cop", "cop", StructFileGrammarLexer.TK_TEXT},
             {"len", "len", StructFileGrammarLexer.TK_NUMBER},
-            {"sub", "sub1", StructFileGrammarLexer.TK_TEXT, StructFileGrammarLexer.TK_NUMBER, StructFileGrammarLexer.TK_NUMBER},
-            {"sub", "sub2", StructFileGrammarLexer.TK_TEXT, StructFileGrammarLexer.TK_TEXT, StructFileGrammarLexer.TK_TEXT},
+            {"sub", "sub1", -StructFileGrammarLexer.TK_TEXT, StructFileGrammarLexer.TK_NUMBER, StructFileGrammarLexer.TK_NUMBER},
+            {"sub", "sub2", -StructFileGrammarLexer.TK_TEXT, StructFileGrammarLexer.TK_TEXT, StructFileGrammarLexer.TK_TEXT},
             {"char", "char", StructFileGrammarLexer.TK_TEXT, StructFileGrammarLexer.TK_NUMBER},
             {"sep", "sep1", -StructFileGrammarLexer.TK_TEXT, StructFileGrammarLexer.TK_TEXT},
             {"sep", "sep2", -StructFileGrammarLexer.TK_TEXT, StructFileGrammarLexer.TK_TEXT, StructFileGrammarLexer.TK_NUMBER},
@@ -251,7 +251,7 @@ public class TranslateToPython extends StructFileGrammarBaseVisitor {
         {"get", "get2", 0, StructFileGrammarLexer.TK_NUMBER},
         {"get", "get3", 0, StructFileGrammarLexer.TK_BOOLEAN, StructFileGrammarLexer.TK_NUMBER},
         {"get", "get4", StructFileGrammarLexer.TK_GROUP, StructFileGrammarLexer.TK_NUMBER, StructFileGrammarLexer.TK_NUMBER},
-        {"get", "get5", 0, StructFileGrammarLexer.TK_NUMBER, StructFileGrammarLexer.TK_NUMBER},
+        {"get", "get5", StructFileGrammarLexer.TK_GROUP, StructFileGrammarLexer.TK_BOOLEAN, StructFileGrammarLexer.TK_NUMBER, StructFileGrammarLexer.TK_NUMBER},
         {"st", "st1", StructFileGrammarLexer.TK_GROUP, StructFileGrammarLexer.TK_BOOLEAN},
         {"st", "st2", StructFileGrammarLexer.TK_GROUP, StructFileGrammarLexer.TK_BOOLEAN, StructFileGrammarLexer.TK_NUMBER},
         {"st", "st3", StructFileGrammarLexer.TK_GROUP, StructFileGrammarLexer.TK_BOOLEAN, StructFileGrammarLexer.TK_NUMBER, StructFileGrammarLexer.TK_NUMBER},
@@ -404,8 +404,10 @@ public class TranslateToPython extends StructFileGrammarBaseVisitor {
 
     // Obtener nombre segun tipo
     public String literalName(int type) {
-        if (type >= 0) {
+        if (type > 0) {
             return StructFileGrammarLexer.VOCABULARY.getLiteralName(type);
+        } else if (type == 0) {
+            return "'any'";
         } else {
             String group = StructFileGrammarLexer.VOCABULARY.getLiteralName(StructFileGrammarLexer.TK_GROUP);
             String val = StructFileGrammarLexer.VOCABULARY.getLiteralName(-type);
@@ -437,6 +439,16 @@ public class TranslateToPython extends StructFileGrammarBaseVisitor {
     // Devuelve la traducción y el tipo del valor
     @Override public Object[] visitContent5(StructFileGrammarParser.Content5Context ctx) {
         return (Object[]) visit(ctx.structures());
+    }
+
+    // Devuelve la traducción y el tipo del valor
+    @Override public Object[] visitContent6(StructFileGrammarParser.Content6Context ctx) {
+        return (Object[]) visit(ctx.return_call());
+    }
+
+    // Devuelve la traducción y el tipo del valor
+    @Override public Object[] visitContent7(StructFileGrammarParser.Content7Context ctx) {
+        return (Object[]) visit(ctx.expression());
     }
 
     // Devuelve la traducción y el tipo del valor
@@ -474,10 +486,11 @@ public class TranslateToPython extends StructFileGrammarBaseVisitor {
     @Override
     public Object[] visitText_val(StructFileGrammarParser.Text_valContext ctx) {
         Object[] object = new Object[2];
-        if (ctx.TEXT_VAL().getText().charAt(0) == '\'') {
-            object[0] = "Text(r" + ctx.TEXT_VAL().getText() + ")";
+        String text = ctx.TEXT_VAL().getText().replaceAll(System.lineSeparator(), "\\\\n");
+        if (text.charAt(0) == '\'') {
+            object[0] = "Text(r" + text + ")";
         } else {
-            object[0] = "Text(" + ctx.TEXT_VAL().getText() + ")";
+            object[0] = "Text(" + text + ")";
         }
         object[1] = StructFileGrammarLexer.TK_TEXT;
         return object;
@@ -801,7 +814,7 @@ public class TranslateToPython extends StructFileGrammarBaseVisitor {
             Object[] expression = ((Object[]) visit(ctx.expression()));
             Object[] add_default_expression = ((Object[]) visit(ctx.add_default_expression()));
             object[1] = expression[1];
-            object[0] = expression[0] + ", " + add_default_expression[0];
+            object[0] = ", " + expression[0] + "" + add_default_expression[0];
             object[2] = add_default_expression[2];
             ((ArrayList<Integer>) object[2]).add(0, (Integer) expression[1]);
         }
@@ -2018,7 +2031,7 @@ public class TranslateToPython extends StructFileGrammarBaseVisitor {
                                 exist = true;
                                 // Si no coinciden los tipos de los parametros
                                 for (int i = 0; i < method.length - 3; i++) {
-                                    if (((ArrayList<Integer>) value_extras[2]).get(i) != (int) method[i] - 3) {
+                                    if (((ArrayList<Integer>) value_extras[2]).get(i) != (int) method[i + 3]) {
                                         exist = false;
                                         break;
                                     }
@@ -2039,6 +2052,11 @@ public class TranslateToPython extends StructFileGrammarBaseVisitor {
                     } else {
                         object[0] = valuePart[0] + "." + existMethod[1] + value_extras[0];
                         object[1] = existMethod[2];
+                        if ((int) object[1] == 0) {
+                            object[1] = -(int)valuePart[1];
+                        } else if ((int) object[1] == StructFileGrammarLexer.TK_GROUP) {
+                            object[1] = valuePart[1];
+                        }
                     }
 
                 } else {
@@ -2054,7 +2072,7 @@ public class TranslateToPython extends StructFileGrammarBaseVisitor {
                                 exist = true;
                                 // Si no coinciden los tipos de los parametros
                                 for (int i = 0; i < method.length - 3; i++) {
-                                    if (((ArrayList<Integer>) value_extras[2]).get(i) != (int) method[i] - 3) {
+                                    if (((ArrayList<Integer>) value_extras[2]).get(i) != (int) method[i + 3]) {
                                         exist = false;
                                         break;
                                     }
@@ -2074,7 +2092,7 @@ public class TranslateToPython extends StructFileGrammarBaseVisitor {
                         semmanticError("Error semántico: El método '" + value_extras[3] + "(...)' no ha sido definido, en la posición <"+ ctx.start.getLine() + ":" + ctx.start.getCharPositionInLine() + ">");
                     } else {
                         object[0] = valuePart[0] + ".execRoot(\"" + existMethod[1] + "\", " + value_extras[0] + ")";
-                        object[1] = -(Integer) existMethod[2];
+                        object[1] = -Math.abs((Integer) existMethod[2]);
                     }
 
                 }
@@ -2589,6 +2607,9 @@ public class TranslateToPython extends StructFileGrammarBaseVisitor {
             object[0] += "" + ((Object[]) visit(ctx.case_().switchContent()))[0];
             object[0] = object[0].toString().substring(0, object[0].toString().length() - 1);
             removeLevel();
+            if (ctx.add_caseContent() != null) {
+                object[0] += "\n" + ind() + ((Object[]) visit(ctx.add_caseContent()))[0];
+            }
         } else {
             object[0] = "";
         }
@@ -2671,7 +2692,7 @@ public class TranslateToPython extends StructFileGrammarBaseVisitor {
         object[0] = "while True:\n";
         addLevel();
         object[0] += "" + ((Object[]) visit(ctx.do_whileContent()))[0];
-        object[0] += ind() + "if " + ((Object[]) visit(ctx.expression()))[0] + ": break";
+        object[0] += ind() + "if not " + ((Object[]) visit(ctx.expression()))[0] + ": break";
         removeLevel();
         object[1] = 0;
         return object;
@@ -2723,6 +2744,10 @@ public class TranslateToPython extends StructFileGrammarBaseVisitor {
             object[1] = 0;
         }
         return object;
+    }
+
+    @Override public Object[] visitReturn_call(StructFileGrammarParser.Return_callContext ctx) {
+        return new Object[]{"return " + ((Object[]) visit(ctx.expression()))[0]};
     }
 
     @Override public Object[] visitAdd_forContent(StructFileGrammarParser.Add_forContentContext ctx) {

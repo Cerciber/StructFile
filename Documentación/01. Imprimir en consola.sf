@@ -1,0 +1,3 @@
+
+# Imprimir textos (Retorna el tex_val)
+out("Hola Mundo");

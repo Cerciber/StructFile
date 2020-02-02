@@ -1,0 +1,20 @@
+
+# Funciones
+# - Deben tener retorno obligatorio para asegurar la continuidad llamados a los metodos
+# - Pueden tener valores por defecto
+# - Al crear dos funciones con el mismo nombre sobrevive solo la ultima función creada
+# - Se pueden crear funciones entre funciones y otras estructuras
+
+# Función sin parametros
+num fun1(){
+	return 7;
+}
+
+# Función con parametros
+num fun2(num val1, num val2, num val3){
+	return val1 + val2 + val3;
+}
+
+# Llamado a funciones
+fun1();
+fun2(3, 5, 7);

@@ -1,0 +1,707 @@
+
+# Operador +
+	# num
+		# num
+			Suma los numeros (num)
+		# bol
+			Covierte el booleano a numero y suma los numeros (num)
+		# tex
+			Covierte el numero a texto y concatena los textos (tex)
+		# fil
+			Covierte el numero a texto a tex y lo concatena con el contendio del file (fil)
+		# dir
+			No soportado
+		# lis
+			Ingesa el numero como primer elemento de la lista (lis)
+		# gro
+			No soportado
+	# bol
+		# num
+			Covierte el booleano a numero y suma los numeros (num)
+		# bol
+			Covierte los booleanos a numeros y suma los numeros (num)
+		# tex
+			Covierte el booleano a texto y concatena los textos (tex)
+		# fil
+			Covierte el booleano a texto a tex y lo concatena con el contendio del file (fil)
+		# dir
+			No soportado
+		# lis
+			Ingesa el booleano como primer elemento de la lista (lis)
+		# gro
+			No soportado
+	# tex
+		# num
+			Covierte el numero a texto y concatena los textos (tex)
+		# bol
+			Covierte el booleano a texto y concatena los textos (tex)
+		# tex
+			Concatena los textos (tex)
+		# fil
+			Concatena el texto con el contendio del file (tex)
+		# dir
+			No soportado
+		# lis
+			Ingesa el texto como primer elemento de la lista (lis)
+		# gro
+			No soportado
+	# fil
+		# num
+			Covierte el numero a texto y lo concatena con el contenido del file (fil)
+		# bol
+			Covierte el booleano a texto y lo concatena con el contenido del file (fil)
+		# tex
+			Concatena el texto con en el contenido del file (fil)
+		# fil
+			Concatena el texto con el contendio del file (fil)
+		# dir
+			No soportado
+		# lis
+			Ingesa el file como primer elemento de la lista (lis)
+		# gro
+			No soportado
+	# dir
+		# num
+			No soportado
+		# bol
+			No soportado
+		# tex
+			No soportado
+		# fil
+			No soportado
+		# dir
+			No soportado
+		# lis
+			No soportado
+		# gro
+			No soportado
+	# lis
+		# num
+			Ingesa el numero como ultimo elemento de la lista (lis)
+		# bol
+			Ingesa el booleano como ultimo elemento de la lista (lis)
+		# tex
+			Ingesa el texto como ultimo elemento de la lista (lis)
+		# fil
+			Ingesa el archivo como ultimo elemento de la lista (lis)
+		# dir
+			Ingesa el directorio como ultimo elemento de la lista (lis)
+		# lis
+			Concatena los elementos del grupo en la lista (lis)
+		# gro
+	# gro
+		# num
+			No soportado
+		# bol
+			No soportado
+		# tex
+			No soportado
+		# fil
+			No soportado
+		# dir
+			No soportado
+		# lis
+			No soportado
+		# gro
+			No soportado
+# Operador -
+	# num
+		# num
+			Resta los numeros (num)
+		# bol
+			Covierte el booleano a numero y resta los numeros (num)
+		# tex
+			No soportado
+		# fil
+			No soportado
+		# dir
+			No soportado
+		# lis
+			No soportado
+		# gro
+			No soportado
+	# bol
+		# num
+			Covierte el booleano a numero y resta los numeros (num)
+		# bol
+			Covierte los booleanos a numeros y resta los numeros (num)
+		# tex
+			No soportado
+		# fil
+			No soportado
+		# dir
+			No soportado
+		# lis
+			No soportado
+		# gro
+			No soportado
+	# tex
+		# num
+			Elimina todas las coincidencias del numero en el texto (tex)
+		# bol
+			Elimina todas las coincidencias del booleano en el texto (tex)
+		# tex
+			Elimina todas las coincidencias del texto 2 en el texto 1 (tex)
+		# fil
+			Elimina todas las coincidencias del contenido del file en el texto (tex)
+		# dir
+			Convirte el directorio a texto y elimina todas las coincidencias del directorio en el texto (tex)
+		# lis
+			Elimina todas las coincidencias del cada elemento de la lista en el texto (tex)
+		# gro
+			Elimina todas las coincidencias del cada elemento valido del grupo en el texto (tex)
+	# fil
+		# num
+			Elimina todas las coincidencias del numero en el contenido del file (tex)
+		# bol
+			Elimina todas las coincidencias del booleano en el contenido del file (tex)
+		# tex
+			Elimina todas las coincidencias del texto en el contenido del file (tex)
+		# fil
+			Elimina todas las coincidencias del contenido del file 2 en el contenido del file 1 (tex)
+		# dir
+			Convirte el directorio a texto y elimina todas las coincidencias del directorio en el contenido del file (tex)
+		# lis
+			Elimina todas las coincidencias del cada elemento de la lista en el contenido del file (tex)
+		# gro
+			Elimina todas las coincidencias del cada elemento valido del grupo en el contenido del file (tex)
+	# dir
+		# num
+			No soportado
+		# bol
+			No soportado
+		# tex
+			No soportado
+		# fil
+			No soportado
+		# dir
+			No soportado
+		# lis
+			No soportado
+		# gro
+			No soportado
+	# lis
+		# num
+			Remover coincidencias de el numero en la lista (lis)
+		# bol
+			Remover coincidencias de el booleano en la lista (lis)
+		# tex
+			Remover coincidencias de el texto en la lista (lis)
+		# fil
+			Remover coincidencias de el archivo en la lista (lis)
+		# dir
+			Remover coincidencias de el directorio en la lista (lis)
+		# lis
+			Remover coincidencias de los elementos la lista 2 en la lista 1 (lis)
+		# gro
+			Remover coincidencias de los elementos validos del grupo en la lista (lis)
+	# gro
+		# num
+			Remover coincidencias de el numero en el grupo (gro)
+		# bol
+			Remover coincidencias de el booleano en el grupo (gro)
+		# tex
+			Remover coincidencias de el texto en el grupo (gro)
+		# fil
+			Remover coincidencias de el archivo en el grupo (gro)
+		# dir
+			Remover coincidencias de el directorio en el grupo (gro)
+		# lis
+			Remover coincidencias de los elementos la lista en los elementos validos el grupo (gro)
+		# gro
+			Remover coincidencias de los elementos validos del grupo 2 en los elementos validos del grupo 2 (gro)
+# Operador *
+	# num
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# bol
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# tex
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# fil
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# dir
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# lis
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# gro
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+# Operador /
+	# num
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# bol
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# tex
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# fil
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# dir
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# lis
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# gro
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+# Operador //
+	# num
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# bol
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# tex
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# fil
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# dir
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# lis
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# gro
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+# Operador %
+	# num
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# bol
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# tex
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# fil
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# dir
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# lis
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# gro
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+# Operador ^
+	# num
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# bol
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# tex
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# fil
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# dir
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# lis
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro
+	# gro
+		# num
+
+		# bol
+
+		# tex
+
+		# fil
+
+		# dir
+
+		# lis
+
+		# gro

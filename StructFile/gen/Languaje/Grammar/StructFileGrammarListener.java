@@ -1,4 +1,4 @@
-// Generated from C:/Users/acer/Google Drive/CESAR/3. UNAL/2. MATERIAS/28. LENGUAJES DE PROGRAMACIÓN/StructFile Languaje/src/Languaje/Grammar\StructFileGrammar.g4 by ANTLR 4.7.2
+// Generated from C:/Users/acer/Google Drive/CESAR/6. PORTAFOLIO/StructFile/StructFile/src/Languaje/Grammar\StructFileGrammar.g4 by ANTLR 4.7.2
 package Languaje.Grammar;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -77,6 +77,30 @@ public interface StructFileGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitContent5(StructFileGrammarParser.Content5Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code content6}
+	 * labeled alternative in {@link StructFileGrammarParser#content}.
+	 * @param ctx the parse tree
+	 */
+	void enterContent6(StructFileGrammarParser.Content6Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code content6}
+	 * labeled alternative in {@link StructFileGrammarParser#content}.
+	 * @param ctx the parse tree
+	 */
+	void exitContent6(StructFileGrammarParser.Content6Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code content7}
+	 * labeled alternative in {@link StructFileGrammarParser#content}.
+	 * @param ctx the parse tree
+	 */
+	void enterContent7(StructFileGrammarParser.Content7Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code content7}
+	 * labeled alternative in {@link StructFileGrammarParser#content}.
+	 * @param ctx the parse tree
+	 */
+	void exitContent7(StructFileGrammarParser.Content7Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link StructFileGrammarParser#tk_semicolon}.
 	 * @param ctx the parse tree
@@ -725,6 +749,16 @@ public interface StructFileGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAdd_forContent(StructFileGrammarParser.Add_forContentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link StructFileGrammarParser#return_call}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturn_call(StructFileGrammarParser.Return_callContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link StructFileGrammarParser#return_call}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturn_call(StructFileGrammarParser.Return_callContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link StructFileGrammarParser#add_content}.
 	 * @param ctx the parse tree

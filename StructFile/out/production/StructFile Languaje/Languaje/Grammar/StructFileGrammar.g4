@@ -1,8 +1,8 @@
 grammar StructFileGrammar;
 
 // Omisiones
-ONELINECOMMENT: '#' ~[\n]+ -> skip;             // Comentario de 1 linea
-MULTILINECOMMENT: '/*' ~[\n] '*/' -> skip;      // Comentario de varias lineas
+ONELINECOMMENT: ('#' | '//') ~[\n]* -> skip;             // Comentario de 1 linea
+MULTILINECOMMENT: '/*' .*? '*/' -> skip;      // Comentario de varias lineas
 SPACES : [ \t\r\n]+ -> skip ;                   // Espacios, saltos de linea, tabulación y retorno de carro
 
 // Palabras reservadas de los tipos de datos
@@ -57,9 +57,9 @@ TK_SUM :        '+';        // Suma
 TK_HIPHEN :     '-';        // Resta (Guion)
 TK_MULT:        '*';        // Multiplicación
 TK_DIVR:        '/';        // División racional
-TK_DIVI:        '//';       // División entera
 TK_MOD:         '%';        // Modulo
-TK_EXP:         '**';       // Expontente
+TK_EXP:         '^';       // Expontente
+TK_DIVI:        '/_';       // División entera
 
 // Operadores de asignación
 TK_ASIGN :      '=';        // Asignación
@@ -85,7 +85,7 @@ ID_DIR: TK_DOT [a-zA-Z0-9_]+ | TK_DOT TEXT_VAL;     // Identificador de nombres 
 // Estructura general
 init : (content add_content)? end;
     // Contenido
-    content : variableDef tk_semicolon #content1 | variableAsign tk_semicolon #content2 | functionDef #content3 | functionCall tk_semicolon #content4 | structures #content5;
+    content : variableDef tk_semicolon #content1 | variableAsign tk_semicolon #content2 | functionDef #content3 | functionCall tk_semicolon #content4 | structures #content5 | return_call tk_semicolon #content6 | expression tk_semicolon #content7;
         // Separador de sentencias
         tk_semicolon : TK_SEMICOLON;
         // Definición de variables
@@ -154,6 +154,9 @@ init : (content add_content)? end;
                 for_rules : variableDef tk_semicolon expression tk_semicolon variableAsign;
                 forContent : (content add_forContent)?;
                 add_forContent : content add_forContent | ;
+        // Llamada a retorno
+        return_call :
+            TK_RETURN expression;
     add_content : content add_content | ;
     // Fin de archivo
     end : EOF;

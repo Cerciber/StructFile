@@ -1,0 +1,34 @@
+
+# Crear texto
+tex texto = "
+ - Nombres
+    - Pedro
+    - Sara
+    - Pipe
+    - Luisa
+ - Cosas
+    - Cama
+    - Carro
+    - Casa
+    - Lapiz
+ - Animales
+    - Perro
+    - Gato
+    - Conejo
+    - Caballo
+";
+
+# Reemplazar guiones por asteriscos
+out(texto$rep("-", "*"));
+
+# Reemover guiones
+out(texto$rem("- "));
+
+# Reemplazar guiones mas internos por asteriscos
+out(texto$sep("\n -")$$rep("-", "*")$join());
+
+# Reemplazar guiones mas externos por asteriscos
+out(texto$get("\n -")$$rep("-", "*")$join());
+
+# Remover Seccion de Cosas
+out(texto$rem("\n -.*", 2));

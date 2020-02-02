@@ -1,0 +1,22 @@
+
+# Concicional if
+if (true) {
+    # Contenido
+}
+
+# Concicional if-else
+if (true) {
+    # Contenido
+} else {
+    # Contenido
+}
+
+# Concicional if-else if-else
+if (true) {
+    # Contenido
+} else if (true) {
+    # Contenido
+} else {
+	# Contenido
+}
+

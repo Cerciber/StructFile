@@ -1,0 +1,35 @@
+
+# crear directorio
+dir directorio = .Archivos[.Trabajo[.Soportes[..empresa.txt."",
+                                              ..antecedentes.txt."",
+                                               ..contactos.txt.""],
+                                    .Ingresos],
+                           .Universidad[.Materias,
+                                        .Proyectos]];
+
+# Escribir directorio inicial
+write("C:\\Users\\acer\\Google Drive\\CESAR\\6. PORTAFOLIO\\StructFile\\Ejemplos\\DirectorioDeEntrada\\Archivos", directorio);
+
+# Leer directorio
+dir directorio = read("C:\\Users\\acer\\Google Drive\\CESAR\\6. PORTAFOLIO\\StructFile\\Ejemplos\\DirectorioDeEntrada\\Archivos");
+
+# Enumerar directorios de "Archivos" por orden alfabético
+directorio = directorio$enumd("A", ". ");
+
+# Enumerar archivos de "Soportes" por orden numerico
+directorio$getd(".*Trabajo")$$getd("Soportes")$$enumf(1, ". ");
+
+# Obtener subarbol "Soportes"
+dir subdirectorio = directorio$getd(".*Trabajo")$get(true, 0)$getd(".*Soportes")$get(true, 0);
+
+# Ingresar nuevo archivo en "Soportes"
+subdirectorio$ins(.."tareas".txt."");
+
+# Renumerar archivos de "Soportes" por orden numerico
+subdirectorio$renumf(1, ". ");
+
+# Imprimir directorio
+out(subdirectorio$tex());
+
+# Escribir directorio final
+write("C:\\Users\\acer\\Google Drive\\CESAR\\6. PORTAFOLIO\\StructFile\\Ejemplos\\DirectorioDeSalida\\Archivos", directorio);

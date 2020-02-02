@@ -1,0 +1,12 @@
+
+# Leer contenido en una dirección en un tipo de dato directorio
+read("dirección")
+
+# Escribir arbol en una dirección borrando el contenido anterior
+write("dirección", directorio) 
+
+# Escribir arbol en una dirección sin borrar el contenido anterior y cambiando el nombre de los archivos si se repiten
+owrite("dirección", directorio)
+
+# Escribir arbol en una dirección sin borrar el contenido anterior y anadiendo infromación a los archivos actuales
+append("dirección", directorio)

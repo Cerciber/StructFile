@@ -1,4 +1,4 @@
-// Generated from C:/Users/acer/Google Drive/CESAR/3. UNAL/2. MATERIAS/28. LENGUAJES DE PROGRAMACIÓN/StructFile Languaje/src/Languaje/Grammar\StructFileGrammar.g4 by ANTLR 4.7.2
+// Generated from C:/Users/acer/Google Drive/CESAR/6. PORTAFOLIO/StructFile/StructFile/src/Languaje/Grammar\StructFileGrammar.g4 by ANTLR 4.7.2
 package Languaje.Grammar;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -83,6 +83,30 @@ public class StructFileGrammarBaseListener implements StructFileGrammarListener 
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitContent5(StructFileGrammarParser.Content5Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterContent6(StructFileGrammarParser.Content6Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitContent6(StructFileGrammarParser.Content6Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterContent7(StructFileGrammarParser.Content7Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitContent7(StructFileGrammarParser.Content7Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -839,6 +863,18 @@ public class StructFileGrammarBaseListener implements StructFileGrammarListener 
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAdd_forContent(StructFileGrammarParser.Add_forContentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterReturn_call(StructFileGrammarParser.Return_callContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitReturn_call(StructFileGrammarParser.Return_callContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

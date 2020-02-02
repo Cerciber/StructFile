@@ -1,0 +1,35 @@
+
+# Definir variables
+num x = 4;
+num y = 7;
+
+# Sumar los numeros
+num suma = x + y;
+
+# Restar los numeros
+num resta = x - y;
+
+# Multiplicar los numeros
+num multiplicacion = x * y;
+
+# Dividir los numeros
+num division = x / y;
+
+# Dividir en parte entera los numeros
+num division_entera = x /_ y;
+
+# Modulo de los numeros
+num modulo = x % y;
+
+# Potencia de los numeros
+num potencia = x ^ y;
+
+# Imprimir resultados
+
+out("la suma de los numeros " + x$tex() + " y " + y$tex() + " es: " + suma$tex());
+out("la resta de los numeros " + x$tex() + " y " + y$tex() + " es: " + resta$tex());
+out("la multiplicación de los numeros " + x$tex() + " y " + y$tex() + " es: " + multiplicacion$tex());
+out("la división de los numeros " + x$tex() + " y " + y$tex() + " es: " + division$tex());
+out("la división entera de los numeros " + x$tex() + " y " + y$tex() + " es: " + division_entera$tex());
+out("El módulo de los numeros " + x$tex() + " y " + y$tex() + " es: " + modulo$tex());
+out("la potencia de los numeros " + x$tex() + " y " + y$tex() + " es: " + potencia$tex());

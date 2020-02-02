@@ -1,0 +1,15 @@
+
+# Condicional switch
+# - Es equivalente a un if-else if-else
+# - Admite cualquier tipo de valor y expresión en la entrada y en los casos 
+# - Realiza break por defecto
+# - El valor por defecto es obligatorio
+
+switch (2 + 1) {
+    3:
+        # Contenido
+    4:
+        # Contenido
+    else:
+        # Contenido
+}

@@ -1,0 +1,56 @@
+
+# Numero
+# - Almacena valores numericos
+# - Si no tiene parte decimal se considera entero y si la tiene se considera real
+num numero = 4;
+num numero = 4.67;
+
+# Booleano
+# - Almacena un valor verddero o falso
+bol booleano = true;
+bol booleano = false;
+
+# Texto
+# - Almacena cadenas de texto
+# - Admite comillas dobles y simples
+tex texto = "contendio";
+tex texto = 'contendio';
+
+# Archivo
+# - Almacena elementos de tipo archivo
+# - Se compone de el nombre del archivo, la extención y el contenido
+# - Si el nombre o la extención solo contienen "a-Z" "0-9" o "_" se pueden escribir sin comillas
+# - Admite comillas dobles y simples
+fil archivo = ..nombre.extension."contendio";
+fil archivo = .."nombre".extension."contendio";
+fil archivo = ..nombre."extension"."contendio";
+fil archivo = .."nombre"."extension"."contendio";
+fil archivo = ..'nombre'.'extension'.'contendio';
+
+# Directorio
+# - Almacena arboles de directorios y archivos
+# - Se puede especificar una unica ruta o un arbol de directorios
+# - Se pueden especificar archivos en el directorio
+# - Si el nombre del los directorios solo contienen "a-Z" "0-9" o "_" se pueden escribir sin comillas
+dir directorio = .nombreDir1.nombreDir2.nombreDirN;
+dir directorio = .nombreDir1.nombreDir2.nombreDirN..nombreFile.extension."contendio";
+dir directorio = .nombreDir1[.nombreDir11.nombreDir1N, .nombreDir21.nombreDir2M];
+dir directorio = .nombreDir1[.nombreDir11.nombreDir1N, .nombreDir21.nombreDir2M, ..nombreFile.extension."contendio"];
+dir directorio = .nombreDir1[.nombreDir11.nombreDir1N, .nombreDir21[.nombreDir211, .nombreDir21M]];
+
+# Lista
+# - Alacena una lista de elementos de cualquier tipo
+lis lista = [1, "Hola", true, ..nombre.extension."contendio"];
+
+# Grupo
+# - Alacena una lista de elementos del mismo tipo
+# - Cada Elemento tiene asociado un validador de modificación
+# - Permite ejecutar funciones grupales y funciones indiciduales para cada elemento valido
+gro num grupoDeNumeros = {1$true, 2$false, 3$true};
+gro bol grupoDeBooleanos = {true$true, true$false, false$true};
+gro tex grupoDeTextos = {"ABC"$true, "DEF"$false, "GHI"$true};
+gro fil grupoDeArchivos = {..doc1.txt."ABC"$true, ..doc2.txt."DEF"$false, ..doc3.txt."GHI"$true};
+gro dir grupoDeDirectorios = {.dir1.subdir1$true, .dir2.subdir2$false, .dir3.subdir3$true};
+gro lis grupoDeListas = {[1, "Hola", true]$true, [2, "Mundo", false]$false, [3, "Hello", true]$true};
+
+

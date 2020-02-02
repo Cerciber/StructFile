@@ -637,7 +637,7 @@ class Text:
         elif isinstance(otro, Boolean):
             return len(self.val) == otro.val
         elif isinstance(otro, Text):
-            return self.val == otro
+            return self.val == otro.val
         elif isinstance(otro, File):
             return self.val == otro.val[2]
         elif isinstance(otro, List):
@@ -935,7 +935,7 @@ class Text:
     # Remover(expresion regular, n-esima coincidencia) (remover n-esima coincidencia de una expresión regular)
     def rem2(self, val1, val2):
         list = []
-        [list.append(e) for e in re.split(val1.val, self.val)]
+        [list.append(e) for e in re.split("(" + val1.val + ")", self.val)]
         list1 = list[:(val2.val * 2 - 1)]
         list2 = list[(val2.val * 2):]
         return Text("".join(list1) + "".join(list2))
@@ -2775,6 +2775,9 @@ class Group:
 
     # Unir todos los elementos en uno solo
     def join1(self):
+        for e in self.val:
+            if type(e[0]) == Group:
+                e[0] = e[0].join1()
         if self.type == Number:
             return Number(float("0" + "".join([str(e[0].val) for e in self.val])))
         elif self.type == Boolean:
@@ -2791,11 +2794,6 @@ class Group:
             for e in self.val:
                 list += e[0].val
             return List(list)
-        elif self.type == Group:
-            list = []
-            for e in self.val:
-                list += e[0].val
-            return Group(list, self.gro().val[0][0].type)
         elif self.type == Tree:
             list1 = []
             list2 = []
@@ -2806,6 +2804,9 @@ class Group:
 
     # Unir todos los elementos validos o no validos en uno solo
     def join2(self, val):
+        for e in self.val:
+            if type(e[0]) == Group:
+                e[0] = e[0].join2(val)
         if self.type == Number:
             return Number(float("0" + "".join([str(e[0].val) if e[1].val == val.val else "" for e in self.val])))
         elif self.type == Boolean:
@@ -2822,11 +2823,6 @@ class Group:
             for e in self.val:
                 list += e[0].val if e[1].val == val.val else []
             return List(list)
-        elif self.type == Group:
-            list = []
-            for e in self.val:
-                list += e[0].val if e[1].val == val.val else []
-            return Group(list, self.gro().val[0][0].type)
         elif self.type == Tree:
             list1 = []
             list2 = []
@@ -2837,6 +2833,9 @@ class Group:
 
     # Obtener elementos validos o no validos
     def get1(self, val):
+        for e in self.val:
+            if type(e[0]) == Group:
+                e[0] = e[0].get1(val)
         return Group([[e[0], e[1]] for e in self.val if e[1].val == val.val], self.type)
 
     # Obtener elemento en la posición especificada
@@ -2895,10 +2894,15 @@ class Group:
 
     # Ejecutar función especificada de las raices por parametro
     def execRoot(self, name, args):
-        if self.type == Group:
-            [e[0].execRoot(name, args) for e in self.val]
+        for e in self.val:
+            if e[1] == Boolean(True):
+                if type(e[0]) == Group:
+                    e[0] = e[0].execRoot(name, args)
+                else:
+                    e[0] = e[0].exec(name, args)
+        if type(self.val[0][0]) == Group:
+            self.type = self.val[0][0].type
         else:
-            self.val = [[e[0].exec(name, args), Boolean(True)] if e[1].val else [e[0].exec(name, args), Boolean(False)] for e in self.val]
             self.type = type(self.val[0][0])
         return self
 
@@ -3257,10 +3261,10 @@ def _read(dir):
         path = os.getcwd() + "\\" + filename
         if os.path.isfile(os.path.join(os.getcwd(), filename)):
             name, ext = re.split("(^.*)\.(.*$)", filename)[1:3]
-            cont = open(path, "r").read()
+            cont = open(path, "r", encoding='ISO-8859-1').read()
             files.append(File([name, ext, cont]))
         if os.path.isdir(os.path.join(os.getcwd(), filename)):
-            trees.append(read(Text(path)))
+            trees.append(_read(Text(path)))
             os.chdir(dir.val)
     return Tree([os.path.basename(dir.val), trees, files])
 
@@ -3275,9 +3279,9 @@ def _write(dir, tree : Tree):
     os.mkdir(parent + "\\" + tree.val[0])
     os.chdir(parent + "\\" + tree.val[0])
     for e in tree.getf5().val:
-        open(parent + "\\" + tree.val[0] + "\\" + e[0].val[0] + "." + e[0].val[1], "w").write(e[0].val[2])
+        open(parent + "\\" + tree.val[0] + "\\" + e[0].val[0] + "." + e[0].val[1], "w", encoding='ISO-8859-1').write(e[0].val[2])
     for e in tree.getd5().val:
-        write(Text(parent + "\\" + tree.val[0] + "\\" + e[0].val[0]), e[0])
+        _write(Text(parent + "\\" + tree.val[0] + "\\" + e[0].val[0]), e[0])
         os.chdir(parent + "\\" + tree.val[0])
     return tree
 
@@ -3299,12 +3303,12 @@ def _owrite(dir, tree):
                 cont += 1
         if cont > 1:
             print(parent + "\\" + tree.val[0] + "\\" + e[0].val[0] + "(" + str(cont) + ")." + e[0].val[1])
-            open(parent + "\\" + tree.val[0] + "\\" + e[0].val[0] + "(" + str(cont) + ")." + e[0].val[1], "w").write(e[0].val[2])
+            open(parent + "\\" + tree.val[0] + "\\" + e[0].val[0] + "(" + str(cont) + ")." + e[0].val[1], "w", encoding='ISO-8859-1').write(e[0].val[2])
         else:
             print(parent + "\\" + tree.val[0] + "\\" + e[0].val[0] + "." + e[0].val[1])
-            open(parent + "\\" + tree.val[0] + "\\" + e[0].val[0] + "." + e[0].val[1], "w").write(e[0].val[2])
+            open(parent + "\\" + tree.val[0] + "\\" + e[0].val[0] + "." + e[0].val[1], "w", encoding='ISO-8859-1').write(e[0].val[2])
     for e in tree.getd5().val:
-        owrite(Text(parent + "\\" + tree.val[0] + "\\" + e[0].val[0]), e[0])
+        _owrite(Text(parent + "\\" + tree.val[0] + "\\" + e[0].val[0]), e[0])
         os.chdir(parent + "\\" + tree.val[0])
     return tree
 
@@ -3320,11 +3324,11 @@ def _append(dir, tree):
     os.chdir(parent + "\\" + tree.val[0])
     for e in tree.getf5().val:
         if os.path.exists(parent + "\\" + tree.val[0] + "\\" + e[0].val[0] + "." + e[0].val[1]):
-            open(parent + "\\" + tree.val[0] + "\\" + e[0].val[0] + "." + e[0].val[1], "a").write(e[0].val[2])
+            open(parent + "\\" + tree.val[0] + "\\" + e[0].val[0] + "." + e[0].val[1], "a", encoding='ISO-8859-1').write(e[0].val[2])
         else:
-            open(parent + "\\" + tree.val[0] + "\\" + e[0].val[0] + "." + e[0].val[1], "w").write(e[0].val[2])
+            open(parent + "\\" + tree.val[0] + "\\" + e[0].val[0] + "." + e[0].val[1], "w", encoding='ISO-8859-1').write(e[0].val[2])
     for e in tree.getd5().val:
-        append(Text(parent + "\\" + tree.val[0] + "\\" + e[0].val[0]), e[0])
+        _append(Text(parent + "\\" + tree.val[0] + "\\" + e[0].val[0]), e[0])
         os.chdir(parent + "\\" + tree.val[0])
     return tree
 
@@ -3335,8 +3339,15 @@ def error(text):
 
 
 def main():
-    _texto = Text("Hola mundo")
-    _out(_texto)
+    _directorio = Tree(["Archivos", [Tree(["Trabajo", [Tree(["Soportes", [File(["empresa", "txt", ""]), File(["antecedentes", "txt", ""]), File(["contactos", "txt", ""])]]), Tree(["Ingresos", []])]]), Tree(["Universidad", [Tree(["Materias", []]), Tree(["Proyectos", []])]])]])
+    _write(Text("C:\\Users\\acer\\Google Drive\\CESAR\\6. PORTAFOLIO\\StructFile\\Ejemplos\\DirectorioDeEntrada\\Archivos"), _directorio)
+    _directorio = _read(Text("C:\\Users\\acer\\Google Drive\\CESAR\\6. PORTAFOLIO\\StructFile\\Ejemplos\\DirectorioDeEntrada\\Archivos"))
+    _directorio = _directorio.enumd2(Text("A"), Text(". "),)
+    _directorio.getd2(Text(".*Trabajo"),).execRoot("getd2", (Text("Soportes"),)).execRoot("enumf1", (Number(1), Text(". "),))
+    _subdirectorio = _directorio.getd2(Text(".*Trabajo"),).get3(Boolean(True), Number(0),).getd2(Text(".*Soportes"),).get3(Boolean(True), Number(0),)
+    _subdirectorio.ins1(File(["tareas", "txt", "s"]),)
+    _out(_subdirectorio.tex())
+    _write(Text("C:\\Users\\acer\\Google Drive\\CESAR\\6. PORTAFOLIO\\StructFile\\Ejemplos\\DirectorioDeSalida\\Archivos"), _directorio)
 try:
     main()
 except Exception as e:

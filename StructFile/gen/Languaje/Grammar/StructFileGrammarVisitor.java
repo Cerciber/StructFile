@@ -1,4 +1,4 @@
-// Generated from C:/Users/acer/Google Drive/CESAR/3. UNAL/2. MATERIAS/28. LENGUAJES DE PROGRAMACIÓN/StructFile Languaje/src/Languaje/Grammar\StructFileGrammar.g4 by ANTLR 4.7.2
+// Generated from C:/Users/acer/Google Drive/CESAR/6. PORTAFOLIO/StructFile/StructFile/src/Languaje/Grammar\StructFileGrammar.g4 by ANTLR 4.7.2
 package Languaje.Grammar;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -51,6 +51,20 @@ public interface StructFileGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitContent5(StructFileGrammarParser.Content5Context ctx);
+	/**
+	 * Visit a parse tree produced by the {@code content6}
+	 * labeled alternative in {@link StructFileGrammarParser#content}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitContent6(StructFileGrammarParser.Content6Context ctx);
+	/**
+	 * Visit a parse tree produced by the {@code content7}
+	 * labeled alternative in {@link StructFileGrammarParser#content}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitContent7(StructFileGrammarParser.Content7Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link StructFileGrammarParser#tk_semicolon}.
 	 * @param ctx the parse tree
@@ -438,6 +452,12 @@ public interface StructFileGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAdd_forContent(StructFileGrammarParser.Add_forContentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link StructFileGrammarParser#return_call}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturn_call(StructFileGrammarParser.Return_callContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link StructFileGrammarParser#add_content}.
 	 * @param ctx the parse tree

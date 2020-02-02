@@ -1,0 +1,44 @@
+
+# Definir variables
+tex texto = "Casa";
+
+# If - else
+out("If - else:");
+if (texto == "Casa") {
+    out("El texto dice Casa");
+} else {
+    out("El texto no dice Casa");
+}
+
+# Switch
+out("Switch:");
+switch (texto) {
+    "Casa":
+        out("El texto dice Casa");
+    "Carro":
+        out("El texto dice Carro");
+    else:
+        out("El texto no dice ni Casa ni Carro");
+}
+
+# Ciclo while
+out("While:");
+num i = 0;
+while (i < 5) {
+    out(texto + " " + (i + 1)$tex());
+    i = i + 1;
+}
+
+# Ciclo do-while
+out("Do-While:");
+num i = 0;
+do {
+    out(texto + " " + (i + 1)$tex());
+    i = i + 1;
+} (i < 5)
+
+# Ciclo for
+out("For:");
+for (num i = 0; i < 5; i = i + 1) {
+    out(texto + " " + (i + 1)$tex());
+}

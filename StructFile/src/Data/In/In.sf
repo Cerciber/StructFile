@@ -1,2 +1,26 @@
 
-out("Hola mundo");
+# crear directorio
+dir directorio = .Archivos[.Trabajo[.Soportes[..empresa.txt."",
+                                              ..antecedentes.txt."",
+                                               ..contactos.txt.""],
+                                    .Ingresos],
+                           .Universidad[.Materias,
+                                        .Proyectos]];
+
+# Escribir directorio inicial
+write("C:\\Users\\acer\\Google Drive\\CESAR\\6. PORTAFOLIO\\StructFile\\Ejemplos\\DirectorioDeEntrada\\Archivos", directorio);
+
+# Leer directorio
+dir directorio = read("C:\\Users\\acer\\Google Drive\\CESAR\\6. PORTAFOLIO\\StructFile\\Ejemplos\\DirectorioDeEntrada\\Archivos");
+
+# Enumerar directorios de "Archivos" por orden alfabético
+directorio = directorio$enumd("A", ". ");
+
+# Enumerar archivos de "Soportes" por orden numerico
+gro dir directorio2 = directorio$getd("Trabajo")$$getd("Soportes")$$enumf("z", ". ");
+
+# Imprimir directorio
+out(directorio2$tex());
+
+# Escribir directorio final
+write("C:\\Users\\acer\\Google Drive\\CESAR\\6. PORTAFOLIO\\StructFile\\Ejemplos\\DirectorioDeSalida\\Archivos", directorio);

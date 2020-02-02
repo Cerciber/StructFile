@@ -1,0 +1,31 @@
+
+# Crear función para replicar texto
+tex replicate(tex texto, num numero){
+	return texto * numero;
+}
+
+# Función para remover coincidencias en el texto
+tex remove(tex texto, tex expresion){
+	return texto - expresion;
+}
+
+# Función para remplazar coincidencias en el texto
+tex replace(tex texto, tex expresion, tex newExpresion){
+	return texto$rep(expresion, newExpresion);
+}
+
+num action = 3;
+tex texto = "Hola mundo";
+num numero = 4;
+tex expresion = "mundo";
+tex newExpresion = "señor";
+switch (action) {
+    0:
+        out(replicate(texto, numero));
+    1:
+        out(remove(texto, expresion));
+    2:
+        out(replace(texto, expresion, newExpresion));
+    else:
+        out("La acción no existe");
+}

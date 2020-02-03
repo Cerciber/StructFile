@@ -32,3 +32,4 @@ out(texto$get("\n -")$$rep("-", "*")$join());
 
 # Remover Seccion de Cosas
 out(texto$rem("\n -.*", 2));
+
